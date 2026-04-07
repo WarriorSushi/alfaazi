@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* ========== Design Tokens ========== */
+:root {
+  --bg: #0a0a0b;
+  --surface: #111113;
+  --surface-2: #1a1a1d;
+  --border: #2a2a2e;
+  --border-active: #3a3a40;
+  --primary: #14b8a6;
+  --primary-muted: #0d9488;
+  --primary-ghost: rgba(20, 184, 166, 0.08);
+  --gold: #d4a44c;
+  --gold-muted: #a67c3a;
+  --gold-ghost: rgba(212, 164, 76, 0.1);
+  --secondary: #38bdf8;
+  --text-1: #f0f0f2;
+  --text-2: #8a8a96;
+  --text-3: #5a5a66;
+  --text-warm: #e8d5b0;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-urdu: "Noto Nastaliq Urdu", "Amiri", serif;
+  --font-arabic: "Amiri", serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ========== Reset ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-1);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(212, 164, 76, 0.3);
+  color: var(--text-1);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-active); }
+
+/* ========== Urdu Text ========== */
+.urdu-text {
+  font-family: var(--font-urdu);
+  direction: rtl;
+  line-height: 2.2;
+  font-size: 1.5rem;
+}
+
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  line-height: 1.8;
+}
+
+/* ========== Animations ========== */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-fade-up { animation: fade-up 0.8s var(--ease-out-expo) both; }
+.animate-fade-in { animation: fade-in 0.6s var(--ease-out-quart) both; }
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
